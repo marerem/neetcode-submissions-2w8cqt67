@@ -1,13 +1,16 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        store = Counter(nums) # {1:1, 2:2, 3:3}
-        frq = [[] for i in range(len(nums)+1)]
-        for n, fr in store.items():
-            frq[fr].append(n)
-        print(frq)
-        res = [] #len(res) ==k
-        for i in range(len(frq)-1,0,-1):
-            for n in frq[i]:
+        count = Counter(nums)
+        res = []
+        fr_count = [[] for i in range(len(nums)+1)]
+        for num, fr in count.items():
+            fr_count[fr].append(num)
+
+        for i in range(len(nums),-1,-1):
+            for n in fr_count[i]:
                 res.append(n)
                 if len(res) == k:
                     return res
+                
+
+
